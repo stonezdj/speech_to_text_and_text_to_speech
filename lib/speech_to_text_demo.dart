@@ -69,8 +69,8 @@ class _SpeechToTextDemoState extends State<SpeechToTextDemo>
     _speech.setRecognitionStartedHandler(onRecognitionStarted);
     _speech.setRecognitionResultHandler(onRecognitionResult);
     _speech.setRecognitionCompleteHandler(onRecognitionComplete);
-    //_speech.setEndOfSpeechHandler(onEndOfSpeech);
-    //_speech.setErrorHandler(errorHandler);
+    // _speech.setEndOfSpeechHandler(onEndOfSpeech);
+    // _speech.setErrorHandler(errorHandler);
     _speech
         .activate()
         .then((res) => setState(() => _speechRecognitionAvailable = res));
@@ -81,7 +81,7 @@ class _SpeechToTextDemoState extends State<SpeechToTextDemo>
       setState(() => _speechRecognitionAvailable = result);
 
   void onRecognitionStarted() {
-    //currentText = _myController.text;
+    currentText = _myController.text;
   }
 
   void onRecognitionResult(String text) {
@@ -93,7 +93,7 @@ class _SpeechToTextDemoState extends State<SpeechToTextDemo>
       transcription = text;
       _isListening = true;
       print('recognized text is- $transcription');
-      //_myController.text = currentText + transcription;
+      _myController.text = transcription;
       _myController.selection = TextSelection.fromPosition(
           TextPosition(offset: _myController.text.length));
     });
@@ -120,7 +120,7 @@ class _SpeechToTextDemoState extends State<SpeechToTextDemo>
       _processRequest(transcription);
       _toggleSpeechRecognitionStatus(isSpeechStarted: false);
       // Comment below line if you want to allow listening more when completed.
-      //_toggleSpeechRecognitionStatus(isSpeechStarted: false);
+      _toggleSpeechRecognitionStatus(isSpeechStarted: false);
     }
   }
 
